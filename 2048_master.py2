@@ -1,0 +1,198 @@
+#import necessary libraries
+import pygame
+import time
+import random
+
+
+#initiate pygame
+pygame.init()
+
+#setup display window
+(width,  height) = (445,  500)
+screen = pygame.display.set_mode((width, height))
+running = True
+
+#set colour variables
+white = (255,  255,  255)
+black = (0,  0,  0)
+grey = (128,  128,  128)
+
+#give the display window a title
+pygame.display.set_caption('shitty 2048')
+
+#import necessary images
+background = pygame.image.load('background.png')
+two_tile = pygame.image.load('two_tile.png') 
+four_tile =  pygame.image.load('four_tile.png')
+eight_tile =  pygame.image.load('eight_tile.png')
+twenty_fourty_eight_tile = pygame.image.load('twenty_fourty_eight_tile.png')
+
+#now we will set up the arrays and strings needed for the game
+coordinates = ['A1',  'A2', 'A3', 'A4', 'B1', 'B2',  'B3',  'B4', 'C1',  'C2', 'C3', 'C4', 'D1', 'D2', 'D3', 'D4']
+global A
+A = ['x',  'x',  'x',  'x']
+B = ['x',  'x',  'x',  'x']
+C = ['x',  'x',  'x',  'x']
+D = ['x',  'x',  'x',  'x']
+
+W = ['x',  'x',  'x',  'x']
+X = ['x',  'x',  'x',  'x']
+Y = ['x',  'x',  'x',  'x']
+Z = ['x',  'x',  'x',  'x']
+
+
+
+#this function just pulls up the background image/the playboard
+def draw_background():
+    screen.blit(background,  (0, 0))
+    pygame.display.flip()
+    
+def spawn_tile():
+    spawn_loops = 0
+    while spawn_loops < 1:
+        
+        time.sleep(0.001)
+        tile1 = random.choice(coordinates)
+       
+        ##tile2 = random.choice(coordinates)
+        
+        print(tile1)
+        
+        if tile1  == 'A1':
+            tile_y_var = 70
+            tile_x_var = 15
+            A[0] = 'two'
+        elif tile1 == 'A2':
+            tile_y_var = 70
+            tile_x_var = 120
+            A[1] = 'two'
+        elif tile1 == 'A3':
+            tile_y_var = 70
+            tile_x_var = 225
+            A[2] = 'two'
+        elif tile1 == 'A4':
+            tile_y_var = 70
+            tile_x_var = 330
+            A[3] = 'two'
+        
+        
+        if tile1 == 'B1':
+            tile_x_var = 15
+            tile_y_var = 175
+            B[0] = 'two'
+        elif tile1 == 'B2':
+            tile_x_var = 120
+            tile_y_var = 175
+            B[1] = 'two'
+        elif tile1 == 'B3':
+            tile_x_var = 225
+            tile_y_var = 175
+            B[2] = 'two'
+        elif tile1 == 'B4':
+            tile_x_var = 330
+            tile_y_var = 175
+            B[3] = 'two'
+        
+        if tile1  == 'C1':
+            tile_y_var = 280
+            tile_x_var = 15
+            C[0] = 'two'
+        elif tile1 == 'C2':
+            tile_y_var = 280
+            tile_x_var = 120
+            C[1] = 'two'
+        elif tile1 == 'C3':
+            tile_y_var = 280
+            tile_x_var = 225
+            C[2] = 'two'
+        elif tile1 == 'C4':
+            tile_y_var = 280
+            tile_x_var = 330
+            C[3] = 'two'
+        
+        
+        if tile1  == 'D1':
+            tile_x_var = 15
+            tile_y_var = 385
+            D[0] = 'two'
+        elif tile1 == 'D2':
+            tile_x_var = 120
+            tile_y_var = 385
+            D[1] = 'two'
+        elif tile1 == 'D3':
+            tile_x_var = 225
+            tile_y_var = 385
+            D[2] = 'two'
+        elif tile1 == 'D4':
+            tile_x_var = 330
+            tile_y_var = 385
+            D[3] = 'two'
+        
+        print(tile_x_var,  tile_y_var)
+        
+        def tile_two():
+            screen.blit(two_tile,  (tile_x_var,  tile_y_var))
+        def tile_four():
+            screen.blit(four_tile,  (tile_x_var,  tile_y_var))
+        two = tile_two()
+        four = tile_four()
+        
+        random.sample([tile_two, ],1)[0]()
+    
+        pygame.display.flip()
+        spawn_loops = spawn_loops +1
+
+def sense_key():
+    events = pygame.event.get()
+    for event in events:
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_DOWN or event.key == pygame.K_s:
+                print('down')
+                print(A)
+                while 'x' in A:
+                    A.remove('x')
+                print(A)
+                while 'x' not in A or len(A) < 4:
+                    A.append('x')
+                    print(A)
+            elif event.key == pygame.K_RIGHT or event.key == pygame.K_d:
+                print('right')
+                print(A)
+                while 'x' in A:
+                    A.remove('x')
+                print(A)
+                while 'x' not in A or len(A) < 4:
+                    A.append('x')
+                    print(A)
+            elif event.key == pygame.K_LEFT or event.key == pygame.K_a:
+                print('left')
+                print(A)
+                while 'x' in A:
+                    A.remove('x')
+                print(A)
+                while 'x' not in A or len(A) < 4:
+                    A.append('x')
+                    print(A)
+            elif event.key == pygame.K_UP or event.key == pygame.K_w:
+                print('up')
+                print(A)
+                while 'x' in A:
+                    A.remove('x')
+                print(A)
+                while 'x' not in A or len(A) < 4:
+                    A.append('x')
+                    print(A)
+
+#MAIN PROGRAM BITS#
+draw_background()    
+time.sleep(0.001)
+spawn_tile()
+spawn_tile()
+while running:
+    sense_key()
+    time.sleep(0.001)
+    
+    
+
+
+    
