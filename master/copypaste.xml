@@ -1,0 +1,19 @@
+for event in events:
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_UP or pygame.K_w:
+                for tilex in coordinates_unquoted_up:
+                    tiley = tilex
+                    if tilex != A1 and tilex != A2 and tilex != A3 and tilex != A4:
+                        tiley = coordinates_unquoted_up[int(coordinates_unquoted_up.index(tilex)) + 4]
+                    tilex.numerical_value  = int(tilex.numerical_value)
+                    tiley.numerical_value = int(tiley.numerical_value)
+                    if tilex.numerical_value != 0 and tilex != A1 and tilex != A2 and tilex != A3 and tilex != A4:
+                        if tiley.numerical_value == tilex.numerical_value:
+                            tiley.numerical_value = tilex.numerical_value * 2
+                            tilex.numerical_value = 0
+                            draw_background()
+                        if tiley.numerical_value == 0:
+                            tiley.numerical_value = tilex.numerical_value
+                            tilex.numerical_value = 0
+                            draw_background()
+
