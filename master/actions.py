@@ -22,6 +22,7 @@ pygame.display.set_caption('shitty 2048')
 
 #import necessary images
 background = pygame.image.load('background.png')
+blank_tile = pygame.image.load('blank_tile.png')
 two_tile = pygame.image.load('two_tile.png') 
 four_tile =  pygame.image.load('four_tile.png')
 eight_tile =  pygame.image.load('eight_tile.png')
@@ -148,6 +149,8 @@ def update_screen():
                     z = (z)
                     blittingval = available_tile_names[z]
             screen.blit(blittingval, (x.tile_x_var, x.tile_y_var))
+        elif x.numerical_value == 0:
+            screen.blit(blank_tile, (x.tile_x_var, x.tile_y_var))
         pygame.display.update()
     
 
@@ -178,11 +181,11 @@ def key_control():
                                 tilex.numerical_value = tilew.numerical_value * 2
                                 tilew.numerical_value = 0
                                 loopU += 1
-                                draw_background()
+                                #draw_background()
                             if tilex.numerical_value == 0:
                                 tilex.numerical_value = tilew.numerical_value
                                 tilew.numerical_value = 0
-                                draw_background()
+                                #draw_background()
                                 
         
         
@@ -198,11 +201,11 @@ def key_control():
                                 tilex.numerical_value = tilew.numerical_value * 2
                                 tilew.numerical_value = 0
                                 loopD += 1
-                                draw_background()
+                                #draw_background()
                             if tilex.numerical_value == 0:
                                 tilex.numerical_value = tilew.numerical_value
                                 tilew.numerical_value = 0
-                                draw_background()
+                                #draw_background()
                                 
                 
                 
@@ -218,11 +221,11 @@ def key_control():
                                 tilex.numerical_value = tilew.numerical_value * 2
                                 tilew.numerical_value = 0
                                 loopR += 1
-                                draw_background()
+                                #draw_background()
                             if tilex.numerical_value == 0:
                                 tilex.numerical_value = tilew.numerical_value
                                 tilew.numerical_value = 0
-                                draw_background()
+                                #draw_background()
                                 
                     
                     
@@ -238,15 +241,16 @@ def key_control():
                                 tilex.numerical_value = tilew.numerical_value * 2
                                 tilew.numerical_value = 0
                                 loopL += 1
-                                draw_background()
+                                #draw_background()
                             if tilex.numerical_value == 0:
                                 tilex.numerical_value = tilew.numerical_value
                                 tilew.numerical_value = 0
-                                draw_background()
+                                #draw_background()
                 
                 
             loops = loops+1
             if event.type == pygame.KEYUP:
                 if loops == 4:
                     spawn_tile()
-
+            if event.type == pygame.QUIT:
+                pygame.quit()
