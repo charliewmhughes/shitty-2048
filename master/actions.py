@@ -58,6 +58,7 @@ class tile:
     numerical_value = 0
     tile_x_var = 0
     tile_y_var = 0
+    dubloop = 0
 
 A1 = tile()
 A2 = tile()
@@ -160,11 +161,7 @@ def key_control():
     events = pygame.event.get()
     loops = 0
     
-    #so that adding doesn't continue past one event.
-    loopU = 0
-    loopD = 0
-    loopL = 0
-    loopR = 0
+
     for event in events:
         while loops < 4:
         
@@ -177,10 +174,11 @@ def key_control():
                         tilew.numerical_value  = int(tilew.numerical_value)
                         tilex.numerical_value = int(tilex.numerical_value)
                         if tilew.numerical_value != 0 and tilew != A1 and tilew != A2 and tilew != A3 and tilew != A4:
-                            if tilex.numerical_value == tilew.numerical_value and loopU < 1:
+                            if tilex.numerical_value == tilew.numerical_value and tilew.dubloop < 1 and tilex.dubloop < 1:
                                 tilex.numerical_value = tilew.numerical_value * 2
                                 tilew.numerical_value = 0
-                                loopU += 1
+                                tilew.dubloop +=1
+                                tilex.dubloop +=1
                                 #draw_background()
                             if tilex.numerical_value == 0:
                                 tilex.numerical_value = tilew.numerical_value
@@ -197,10 +195,11 @@ def key_control():
                         tilew.numerical_value  = int(tilew.numerical_value)
                         tilex.numerical_value = int(tilex.numerical_value)
                         if tilew.numerical_value != 0 and tilew != D1 and tilew != D2 and tilew != D3 and tilew != D4:
-                            if tilex.numerical_value == tilew.numerical_value and loopD < 1:
+                            if tilex.numerical_value == tilew.numerical_value and tilew.dubloop < 1 and tilex.dubloop < 1:
                                 tilex.numerical_value = tilew.numerical_value * 2
                                 tilew.numerical_value = 0
-                                loopD += 1
+                                tilew.dubloop +=1
+                                tilex.dubloop +=1
                                 #draw_background()
                             if tilex.numerical_value == 0:
                                 tilex.numerical_value = tilew.numerical_value
@@ -217,10 +216,11 @@ def key_control():
                         tilew.numerical_value  = int(tilew.numerical_value)
                         tilex.numerical_value = int(tilex.numerical_value)
                         if tilew.numerical_value != 0 and tilew != A4 and tilew != B4 and tilew != C4 and tilew != D4:
-                            if tilex.numerical_value == tilew.numerical_value and loopR < 1:
+                            if tilex.numerical_value == tilew.numerical_value and tilew.dubloop < 1 and tilex.dubloop < 1:
                                 tilex.numerical_value = tilew.numerical_value * 2
                                 tilew.numerical_value = 0
-                                loopR += 1
+                                tilew.dubloop +=1
+                                tilex.dubloop +=1
                                 #draw_background()
                             if tilex.numerical_value == 0:
                                 tilex.numerical_value = tilew.numerical_value
@@ -237,10 +237,11 @@ def key_control():
                         tilew.numerical_value  = int(tilew.numerical_value)
                         tilex.numerical_value = int(tilex.numerical_value)
                         if tilew.numerical_value != 0 and tilew != A1 and tilew != B1 and tilew != C1 and tilew != D1:
-                            if tilex.numerical_value == tilew.numerical_value and loopL < 1:
+                            if tilex.numerical_value == tilew.numerical_value and tilew.dubloop < 1 and tilex.dubloop < 1:
                                 tilex.numerical_value = tilew.numerical_value * 2
                                 tilew.numerical_value = 0
-                                loopL += 1
+                                tilew.dubloop +=1
+                                tilex.dubloop +=1
                                 #draw_background()
                             if tilex.numerical_value == 0:
                                 tilex.numerical_value = tilew.numerical_value
@@ -249,6 +250,9 @@ def key_control():
                 
                 
             loops = loops+1
+            for anytile in coordinates_unquoted:
+                if loops ==4:
+                    anytile.dubloop = 0
             if event.type == pygame.KEYUP:
                 if loops == 4:
                     spawn_tile()

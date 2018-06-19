@@ -10,3 +10,4 @@ actions.spawn_tile()
 while True:
     actions.update_screen() 
     actions.key_control()
+    time.sleep(0.005)
