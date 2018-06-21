@@ -1,10 +1,9 @@
-#Written by Charlie Hughes. Since I can't stop you using this, do with it what you will. Also, I know it won't stop you, but don't delete this comment, because I did all the hard work and deserve at least this tiny bit of recognition. Thanks.
+  #Written by Charlie Hughes. Since I can't stop you using this, do with it what you will. Also, I know it won't stop you, but don't delete this comment, because I did all the hard work and deserve at least this tiny bit of recognition. Thanks.
 
 #import necessary libraries
 import pygame
 import time
 import random
-
 
 #initiate pygame
 pygame.init()
@@ -13,6 +12,10 @@ pygame.init()
 (width,  height) = (445,  500)
 screen = pygame.display.set_mode((width, height))
 running = True
+
+#draw ze icon
+icon = pygame.image.load('twenty_fourty_eight_tile.png')
+pygame.display.set_icon(icon)
 
 #set colour variables
 white = (255,  255,  255)
@@ -325,8 +328,10 @@ def key_control():
                 #if the thing has looped four times (one cycle), then reset the adding loop of each variable:
                 if loops == 4:
                     anytile.dubloop = 0
+            #just gonna stick this here I know it shouldn't go here:
+            gamekeys = (276, 97, 275, 100, 274, 115, 273, 119)
             #if you release a key, and the cycle has ended, spawn a new tile
-            if event.type == pygame.KEYUP:
+            if event.type == pygame.KEYUP and event.key in gamekeys:
                 if loops == 4:
                     spawn_tile()
             #if you click the exit button, then it will quit the program, instead of doing nothing like it used to.
